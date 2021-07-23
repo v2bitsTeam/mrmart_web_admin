@@ -17,6 +17,7 @@ const UsersRow = ({ User, Index }) => {
       <TableRow className={classes.root}>
         <TableCell className={classes.userShopId}>{User.uid}</TableCell>
         <TableCell className={classes.userName}>{User.name}</TableCell>
+        <TableCell className={classes.userEmail}>{User.email}</TableCell>
         <TableCell className={classes.userMobile}>{User.mobile}</TableCell>
         <TableCell
           className={classes.userAddress}
@@ -58,12 +59,18 @@ const useStyles = makeStyles({
     width: "20%",
   },
   userName: {
-    width: "20%",
+    width: "15%",
+  },
+  userEmail: {
+    width: "15%",
   },
   userMobile: {
-    width: "20%",
+    width: "15%",
   },
   userAddress: {
-    width: "40%",
+    width: "30%",
+  },
+  actions: {
+    width: "5%",
   },
 });

@@ -110,9 +110,10 @@ const useStyles = makeStyles({
   },
   media: {
     width: 200,
-    maxHeight: 120,
+    maxHeight: 150,
     objectFit: "contain",
-    borderRadius: "0.6rem",
+    borderRadius: "0.3rem",
+    boxShadow: " 0px 2px 10px 1px #59595933",
   },
   categoryName: {
     flex: 1,

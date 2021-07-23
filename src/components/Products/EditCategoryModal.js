@@ -127,6 +127,7 @@ const EditCategoryModal = ({
     formData.append("cid", category.cid);
     formData.append("category_name", categoryName);
     formData.append("featured", featured);
+
     if (imageFile) {
       formData.append("imageEdited", true);
       formData.append("oldimage", category.category_image);

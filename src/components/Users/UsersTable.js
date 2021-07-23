@@ -15,6 +15,7 @@ import UsersRow from "./UsersRow";
 const headCells = [
   { id: "uid", label: "User ID" },
   { id: "name", label: "Name" },
+  { id: "email", label: "Email" },
   { id: "mobile", label: "Mobile" },
   { id: "address", label: "Address", disableSorting: true },
   { id: "actions", label: "Actions", disableSorting: true },
@@ -32,6 +33,7 @@ const UsersTable = () => {
     temporarySearchResults = users.filter(
       (user) =>
         user.name.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLowerCase()) ||
         user.mobile.toLowerCase().includes(search.toLowerCase()) ||
         user.location.toLowerCase().includes(search.toLowerCase()) ||
         user.city.toLowerCase().includes(search.toLowerCase()) ||

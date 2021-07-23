@@ -10,6 +10,7 @@ import getDate from "../../helpers/getDate";
 import fetchOrderItems from "./fetchOrderItems";
 import OrderedProductsTable from "./OrderedProductsTable";
 import OrderActions from "./OrderActions";
+import OrderUserTable from "./OrderUserTable";
 
 const OrdersRow = ({
   Order,
@@ -38,7 +39,7 @@ const OrdersRow = ({
       if (mounted) setProductList(orderItems);
     }
   }
-
+  console.log(Order);
   return (
     <>
       <TableRow className={classes.root}>
@@ -72,6 +73,13 @@ const OrdersRow = ({
             setSnackbarMessage={setSnackbarMessage}
             setSnackbarSeverity={setSnackbarSeverity}
           />
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+          <Collapse in={dropDown} timeout="auto" unmountOnExit>
+            <OrderUserTable userId={Order.uid} />
+          </Collapse>
         </TableCell>
       </TableRow>
       <TableRow>

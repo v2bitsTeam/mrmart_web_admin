@@ -36,9 +36,9 @@ const UserDetails = () => {
             gutterBottom
             variant="subtitle1"
             component="h1"
-            className={classes.userID}
+            className={classes.userEmail}
           >
-            ID: {user.uid}
+            Email: {user.email}
           </Typography>
           <Typography
             gutterBottom
@@ -89,12 +89,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0.6rem",
   },
   cardContent: {
-    width: "70%",
+    width: "90%",
   },
   userName: {
     flex: 1,
   },
-  userID: {
+  userEmail: {
     width: "fit-content",
     background: theme.palette.primary.light,
     fontWeight: "600",
