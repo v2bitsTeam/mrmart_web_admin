@@ -64,7 +64,7 @@ const AddCategoryModal = ({
   };
 
   async function handleAddCategorySubmit() {
-    if (categoryName.length === 0) {
+    if (categoryName.trim().length === 0) {
       setCategoryNameError("Category name is required");
       return;
     }
@@ -76,7 +76,7 @@ const AddCategoryModal = ({
     setUploading(true);
 
     const formData = new FormData();
-    formData.append("category_name", categoryName);
+    formData.append("category_name", categoryName.trim());
     formData.append("category_image", image);
     formData.append("featured", featured);
 

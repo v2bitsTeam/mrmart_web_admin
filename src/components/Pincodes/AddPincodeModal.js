@@ -53,19 +53,19 @@ const AddPincodeModal = ({
 
   async function handleAddPincodeSubmit() {
     let validString = /^[a-zA-Z][a-zA-Z\s][a-zA-Z\s]*$/;
-    if (pincode.length === 0) {
+    if (pincode.trim().length === 0) {
       setPincodeError("Pincode is required");
       return;
     }
-    if (isNaN(pincode) || pincode.length !== 6) {
+    if (isNaN(pincode.trim()) || pincode.trim().length !== 6) {
       setPincodeError("Invalid Pincode");
       return;
     }
-    if (address.length === 0) {
+    if (address.trim().length === 0) {
       setAddressError("Address is required");
       return;
     }
-    if (!address.match(validString)) {
+    if (!address.trim().match(validString)) {
       setAddressError("Invalid Address");
       return;
     }

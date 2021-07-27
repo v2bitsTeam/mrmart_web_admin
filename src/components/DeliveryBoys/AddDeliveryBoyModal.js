@@ -91,68 +91,71 @@ const AddDeliveryBoy = ({
   async function handleAddDeliveryBoySubmit() {
     let validString = /^[a-zA-Z][a-zA-Z\s][a-zA-Z\s]*$/;
 
-    if (deliveryBoyName.length === 0) {
+    if (deliveryBoyName.trim().length === 0) {
       setDeliveryBoyNameError("DeliveryBoy name is required");
       return;
     }
-    if (!deliveryBoyName.match(validString)) {
+    if (!deliveryBoyName.trim().match(validString)) {
       setDeliveryBoyNameError("DeliveryBoy name is required");
       return;
     }
-    if (deliveryBoyMobile.length === 0) {
+    if (deliveryBoyMobile.trim().length === 0) {
       setDeliveryBoyMobileError("Mobile Number is required");
       return;
     }
-    if (isNaN(deliveryBoyMobile) || deliveryBoyMobile.length !== 10) {
+    if (
+      isNaN(deliveryBoyMobile.trim()) ||
+      deliveryBoyMobile.trim().length !== 10
+    ) {
       setDeliveryBoyMobileError("Invalid Mobile Number");
       return;
     }
-    if (deliveryBoyPassword.length === 0) {
+    if (deliveryBoyPassword.trim().length === 0) {
       setDeliveryBoyPasswordError("Password is required");
       return;
     }
-    if (deliveryBoyLocation.length === 0) {
+    if (deliveryBoyLocation.trim().length === 0) {
       setDeliveryBoyLocationError("Address is required");
       return;
     }
-    if (deliveryBoyLocation.length < 5) {
+    if (deliveryBoyLocation.trim().length < 5) {
       setDeliveryBoyLocationError("Please, enter valid address");
       return;
     }
-    if (deliveryBoyCity.length === 0) {
+    if (deliveryBoyCity.trim().length === 0) {
       setDeliveryBoyCityError("City is required");
       return;
     }
-    if (!deliveryBoyCity.match(validString)) {
+    if (!deliveryBoyCity.trim().match(validString)) {
       setDeliveryBoyCityError("Please, enter valid city");
       return;
     }
-    if (deliveryBoyState.length === 0) {
+    if (deliveryBoyState.trim().length === 0) {
       setDeliveryBoyStateError("State is required");
       return;
     }
-    if (!deliveryBoyState.match(validString)) {
+    if (!deliveryBoyState.trim().match(validString)) {
       setDeliveryBoyStateError("Please, enter valid state");
       return;
     }
-    if (!deliveryBoyPinCode.length === 0) {
+    if (!deliveryBoyPinCode.trim().length === 0) {
       setDeliveryBoyPinCodeError("Pincode is required");
       return;
     }
-    if (isNaN(deliveryBoyPinCode)) {
+    if (isNaN(deliveryBoyPinCode.trim())) {
       setDeliveryBoyStateError("Please, enter valid pincode");
       return;
     }
     clearInputs();
     setUploading(true);
     const formData = new FormData();
-    formData.append("name", deliveryBoyName);
-    formData.append("mobile", deliveryBoyMobile);
-    formData.append("location", deliveryBoyLocation);
-    formData.append("city", deliveryBoyCity);
-    formData.append("state", deliveryBoyState);
-    formData.append("pincode", deliveryBoyPinCode);
-    formData.append("password", deliveryBoyPassword);
+    formData.append("name", deliveryBoyName.trim());
+    formData.append("mobile", deliveryBoyMobile.trim());
+    formData.append("location", deliveryBoyLocation.trim());
+    formData.append("city", deliveryBoyCity.trim());
+    formData.append("state", deliveryBoyState.trim());
+    formData.append("pincode", deliveryBoyPinCode.trim());
+    formData.append("password", deliveryBoyPassword.trim());
     formData.append("profile_image", image);
 
     const response = await addDeliveryBoy(formData);

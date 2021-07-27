@@ -39,6 +39,7 @@ const AddProduct = ({
   const [productNameError, setProductNameError] = useState("");
   const [productDescriptionError, setProductDescriptionError] = useState("");
   const [productPriceError, setProductPriceError] = useState("");
+  const [productDiscountError, setProductDiscountError] = useState("");
   const [productQuantityError, setProductQuantityError] = useState("");
   const [imageError, setImageError] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -49,6 +50,7 @@ const AddProduct = ({
     setProductDescription("");
     setProductPrice("");
     setProductQuantity("");
+    setProductDiscount("0");
     setImage(null);
   };
 
@@ -57,6 +59,7 @@ const AddProduct = ({
     setProductDescriptionError(null);
     setProductPriceError(null);
     setProductQuantityError(null);
+    setProductDiscountError(null);
     setImageError(null);
   };
 
@@ -95,35 +98,43 @@ const AddProduct = ({
   };
 
   async function handleAddProductSubmit() {
-    if (productName.length === 0) {
+    if (productName.trim().length === 0) {
       setProductNameError("Product name is required");
       return;
     }
-    if (productPrice.length === 0) {
+    if (productPrice.trim().length === 0) {
       setProductPriceError("Product price is required");
       return;
     }
-    if (isNaN(productPrice)) {
+    if (isNaN(productPrice.trim())) {
       setProductPriceError("Invalid product price");
       return;
     }
-    if (productQuantity.length === 0) {
+    if (productQuantity.trim().length === 0) {
       setProductQuantityError("Product quantity is required");
       return;
     }
-    if (isNaN(productQuantity)) {
+    if (isNaN(productQuantity.trim())) {
       setProductQuantityError("Invalid product quantity");
+      return;
+    }
+    if (productDiscount.trim().length === 0) {
+      setProductDiscountError("Product quantity is required");
+      return;
+    }
+    if (isNaN(productDiscount.trim())) {
+      setProductDiscountError("Invalid product discount");
       return;
     }
     if (!image) {
       setImageError("Image can't be empty");
       return;
     }
-    if (productDescription.length === 0) {
+    if (productDescription.trim().length === 0) {
       setProductDescriptionError("Product Description is required");
       return;
     }
-    if (productDescription.length < 5) {
+    if (productDescription.trim().length < 5) {
       setProductDescriptionError("Please, enter valid Description");
       return;
     }
@@ -131,14 +142,14 @@ const AddProduct = ({
     setUploading(true);
 
     const formData = new FormData();
-    formData.append("name", productName);
+    formData.append("name", productName.trim());
     formData.append("cid", categoryId);
-    formData.append("price", productPrice);
-    formData.append("description", productDescription);
+    formData.append("price", productPrice.trim());
+    formData.append("description", productDescription.trim());
     formData.append("featured", featured);
-    formData.append("discount", productDiscount);
+    formData.append("discount", productDiscount.trim());
     formData.append("image", image);
-    formData.append("instock", productQuantity);
+    formData.append("instock", productQuantity.trim());
 
     const response = await addProduct(formData);
     setUploading(false);
@@ -247,8 +258,8 @@ const AddProduct = ({
               value={productDiscount}
               size="medium"
               className={classes.flexgroup1}
-              error={productNameError ? true : false}
-              helperText={productNameError}
+              error={productDiscountError ? true : false}
+              helperText={productDiscountError}
               InputProps={{
                 endAdornment: <InputAdornment position="end">%</InputAdornment>,
               }}

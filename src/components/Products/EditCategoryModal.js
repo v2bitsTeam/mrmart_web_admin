@@ -111,7 +111,7 @@ const EditCategoryModal = ({
       }, 0);
       return;
     }
-    if (categoryName.length === 0) {
+    if (categoryName.trim().length === 0) {
       setCategoryNameError("Category name is required");
       return;
     }
@@ -125,7 +125,7 @@ const EditCategoryModal = ({
     const formData = new FormData();
 
     formData.append("cid", category.cid);
-    formData.append("category_name", categoryName);
+    formData.append("category_name", categoryName.trim());
     formData.append("featured", featured);
 
     if (imageFile) {

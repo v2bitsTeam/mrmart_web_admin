@@ -48,15 +48,18 @@ const EditProductModal = ({
   const [productDescriptionError, setProductDescriptionError] = useState("");
   const [productPriceError, setProductPriceError] = useState("");
   const [productQuantityError, setProductQuantityError] = useState("");
+  const [productDiscountError, setProductDiscountError] = useState("");
   const [imageError, setImageError] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(false);
   const classes = useStyles();
+
   const clearInputs = () => {
     setProductName("");
     setProductDescription("");
     setProductPrice("");
     setProductQuantity("");
+    setProductDiscount("0");
     setImage(null);
   };
 
@@ -88,6 +91,7 @@ const EditProductModal = ({
     setProductDescriptionError(null);
     setProductPriceError(null);
     setProductQuantityError(null);
+    setProductDiscountError(null);
     setImageError(null);
     setUploadError(null);
   };
@@ -149,23 +153,31 @@ const EditProductModal = ({
       }, 0);
       return;
     }
-    if (productName.length === 0) {
+    if (productName.trim().length === 0) {
       setProductNameError("Product name is required");
       return;
     }
-    if (productPrice.length === 0) {
+    if (productPrice.trim().length === 0) {
       setProductPriceError("Product price is required");
       return;
     }
-    if (isNaN(productPrice)) {
+    if (isNaN(productPrice.trim())) {
       setProductPriceError("Invalid product price");
       return;
     }
-    if (productQuantity.length === 0) {
+    if (productQuantity.trim().length === 0) {
       setProductQuantityError("Product quantity is required");
       return;
     }
-    if (isNaN(productQuantity)) {
+    if (isNaN(productQuantity.trim())) {
+      setProductQuantityError("Invalid product quantity");
+      return;
+    }
+    if (productQuantity.trim().length === 0) {
+      setProductQuantityError("Product quantity is required");
+      return;
+    }
+    if (isNaN(productQuantity.trim())) {
       setProductQuantityError("Invalid product quantity");
       return;
     }
@@ -173,24 +185,24 @@ const EditProductModal = ({
       setImageError("Image can't be empty");
       return;
     }
-    if (productDescription.length === 0) {
+    if (productDescription.trim().length === 0) {
       setProductDescriptionError("Product Description is required");
       return;
     }
-    if (productDescription.length < 5) {
+    if (productDescription.trim().length < 5) {
       setProductDescriptionError("Please, enter valid Description");
       return;
     }
     clearInputs();
     setUploading(true);
     const formData = new FormData();
-    formData.append("name", productName);
+    formData.append("name", productName.trim());
     formData.append("pid", product.pid);
-    formData.append("price", productPrice);
-    formData.append("description", productDescription);
+    formData.append("price", productPrice.trim());
+    formData.append("description", productDescription.trim());
     formData.append("featured", featured);
-    formData.append("discount", productDiscount);
-    formData.append("instock", productQuantity);
+    formData.append("discount", productDiscount.trim());
+    formData.append("instock", productQuantity.trim());
     if (imageFile) {
       formData.append("image", imageFile);
       formData.append("oldimage", product.image);
@@ -333,7 +345,7 @@ const EditProductModal = ({
               size="medium"
               className={classes.flexgroup1}
               error={productNameError ? true : false}
-              helperText={productNameError}
+              helperText={productDiscountError}
               InputProps={{
                 endAdornment: <InputAdornment position="end">%</InputAdornment>,
               }}

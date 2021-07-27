@@ -7,7 +7,6 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { mediaUrl } from "../../helpers/Constants";
 import getOrderUserdetails from "./getOrderUserdetails";
 
 const OrderUserTable = ({ userId }) => {
